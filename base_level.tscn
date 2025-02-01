@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://hq8g2an6rmsr"]
+
+[ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_bo3yr"]
+sky_material = SubResource("ProceduralSkyMaterial_4sal3")
+
+[sub_resource type="Environment" id="Environment_5vx1e"]
+background_mode = 2
+sky = SubResource("Sky_bo3yr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo3yr"]
+albedo_color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_bo3yr"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22, 0, 6, 0, 0, 0, 0, 0, 0, 14, 0, 6, 0, 0, 0, 0, 0, 0, 14, 0, -2, 0, 0, 0, 0, 0, 0, -10, 0, -2, 0, 0, 0, 0, 0, 0, -10, 0, -6),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="BaseLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5vx1e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(100, 2, 100)
+material = SubResource("StandardMaterial3D_bo3yr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 14.5, 9.5)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_bo3yr")
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65531, 65535, 0, 4, 65535, 0, 65535, 65534, 0, 65535, 2, 0, 65531, 65534, 0, 65532, 65534, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65534, 0, 3, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65534, 0, 65531, 0, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 65532, 65535, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
+}
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bo3yr")
