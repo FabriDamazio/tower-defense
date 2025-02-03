@@ -19,6 +19,7 @@ public partial class Enemy : PathFollow3D
         if (ProgressRatio == 1.0)
         {
             _base.TakeDamage();
+            SetProcess(false);
         }
     }
 }
