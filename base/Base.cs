@@ -13,7 +13,6 @@ public partial class Base : Node3D
     public override void _Ready()
     {
         _healthLabel = GetNode<Label3D>("%HealthLabel");
-        _healthLabel.Text = MaxHealth.ToString();
         SetHealth(MaxHealth);
     }
 
@@ -21,7 +20,11 @@ public partial class Base : Node3D
     {
         CurrentHealth = value;
         GD.Print("health was changed");
-        _healthLabel.Text = CurrentHealth.ToString();
+        _healthLabel.Text = $"{CurrentHealth.ToString()}/{MaxHealth.ToString()}";
+
+        var healthDiff = (float)CurrentHealth/(float)MaxHealth;
+        GD.Print(healthDiff);
+        _healthLabel.Modulate = Colors.Red.Lerp(Colors.White, healthDiff) ;
 
         if (CurrentHealth < 1)
         {
