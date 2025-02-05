@@ -12,6 +12,8 @@ public partial class Projectile : Area3D
     {
         _timer = GetNode<Timer>("%Timer");
         _timer.Timeout += OnTimerTimeout;
+
+        AreaEntered += OnAreaEntered;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -22,5 +24,16 @@ public partial class Projectile : Area3D
     private void OnTimerTimeout()
     {
         QueueFree();
+    }
+
+    private void OnAreaEntered(Area3D area)
+    {
+        if (area.IsInGroup("enemy_area"))
+        {
+            GD.Print(area);
+            var enemy = area.GetParent<Enemy>();
+            enemy.SetCurrentHealth(enemy.CurrentHealth - 25);
+            QueueFree();
+        }
     }
 }
