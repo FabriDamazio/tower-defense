@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6kt6d8htvs7j"]
+
+[ext_resource type="Script" uid="uid://c727lty0sbh4s" path="res://turret/Projectile.cs" id="1_xw3pi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjyge"]
+albedo_color = Color(0.666667, 0.156863, 0.12549, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xw3pi"]
+material = SubResource("StandardMaterial3D_bjyge")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nj30x"]
+
+[node name="Projectile" type="Area3D"]
+top_level = true
+script = ExtResource("1_xw3pi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_xw3pi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_nj30x")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
