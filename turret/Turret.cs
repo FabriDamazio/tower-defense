@@ -12,6 +12,7 @@ public partial class Turret : Node3D
     private Node3D _turretTop;
     private Path3D _enemyPath;
     private PathFollow3D _target;
+    private AnimationPlayer _animationPlayer;
 
     public override void _Ready()
     {
@@ -19,6 +20,7 @@ public partial class Turret : Node3D
         _shotTimer.Timeout += OnTimerTimeout;
 
         _turretTop = GetNode<Node3D>("%TurretTop");
+        _animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -38,6 +40,7 @@ public partial class Turret : Node3D
     {
         if (_target is not null)
         {
+            _animationPlayer.Play("fire");
             var shot = Projectile.Instantiate<Projectile>();
             AddChild(shot);
             shot.GlobalPosition = _turretTop.GlobalPosition;
