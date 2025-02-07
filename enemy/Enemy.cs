@@ -9,12 +9,16 @@ public partial class Enemy : PathFollow3D
     public int MaxHealth = 50;
 
     public int CurrentHealth;
+
     private Base _base;
+    private AnimationPlayer _animationPlayer;
 
     public override void _Ready()
     {
         _base = GetTree().GetFirstNodeInGroup("base") as Base;
         CurrentHealth = MaxHealth;
+
+        _animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
     }
 
     public override void _Process(double delta)
@@ -30,7 +34,11 @@ public partial class Enemy : PathFollow3D
 
     public void SetCurrentHealth(int value)
     {
+        if (value < CurrentHealth)
+            _animationPlayer.Play("take_damage");
+
         CurrentHealth = value;
+
 
         if (CurrentHealth < 1)
             QueueFree();
