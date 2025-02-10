@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdplchiws7iu2"]
+
+[ext_resource type="Script" uid="uid://dei6wne6552lq" path="res://difficult_manager/DifficultManager.cs" id="1_hritt"]
+
+[sub_resource type="Curve" id="Curve_hritt"]
+_limits = [0.25, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -1.75, 0, 1, Vector2(1, 0.25), -1.75, 0.0, 1, 0]
+point_count = 2
+
+[node name="DifficultManager" type="Node"]
+script = ExtResource("1_hritt")
+SpawnTimeCurve = SubResource("Curve_hritt")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://hq8g2an6rmsr"]
+[gd_scene load_steps=16 format=3 uid="uid://hq8g2an6rmsr"]
 
 [ext_resource type="PackedScene" uid="uid://dnx2pujjh3eb5" path="res://ray_picker_camera/ray_picker_camera.tscn" id="1_3o4py"]
 [ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpqaxeaog1s44" path="res://TurretManager.cs" id="5_ftfrf"]
 [ext_resource type="PackedScene" uid="uid://dr2wkr4862du" path="res://turret/turret.tscn" id="6_u2wky"]
 [ext_resource type="Script" uid="uid://cj46wyxg62tgo" path="res://Bank.cs" id="8_bkkah"]
+[ext_resource type="PackedScene" uid="uid://bdplchiws7iu2" path="res://difficult_manager/difficult_manager.tscn" id="9_xjg0i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -64,10 +65,11 @@ data = {
 "cells": PackedInt32Array(65531, 65535, 0, 4, 65535, 0, 65535, 65534, 0, 65535, 2, 0, 65531, 65534, 0, 65532, 65534, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65534, 0, 3, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65534, 0, 65531, 0, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 65532, 65535, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("_difficultManager")]
 curve = SubResource("Curve3D_bo3yr")
 script = ExtResource("3_2elnx")
 EnemyScene = ExtResource("2_5vx1e")
+_difficultManager = NodePath("../DifficultManager")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
@@ -144,3 +146,5 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Placeholder"
 label_settings = SubResource("LabelSettings_2elnx")
+
+[node name="DifficultManager" parent="." instance=ExtResource("9_xjg0i")]
