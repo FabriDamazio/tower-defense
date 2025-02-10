@@ -11,11 +11,16 @@ public partial class RayPickerCamera : Camera3D
     [Export]
     public TurretManager TurretManager;
 
+    [Export]
+    public int TurretCost = 100;
+
     private RayCast3D _rayCast3D;
+    private Bank _bank;
 
     public override void _Ready()
     {
         _rayCast3D = GetNode<RayCast3D>("%RayCast3D");
+        _bank = GetTree().GetFirstNodeInGroup("bank") as Bank;
     }
 
     public override void _Process(double delta)
@@ -30,19 +35,27 @@ public partial class RayPickerCamera : Camera3D
 
             if (collider is GridMap)
             {
-                Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
-
-                if (Input.IsActionPressed("click"))
+                if (_bank.CurrentGold >= TurretCost)
                 {
-                    Vector3 collisionPoint = _rayCast3D.GetCollisionPoint();
-                    Vector3I cellPosition = GridMap.LocalToMap(collisionPoint);
+                    Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
 
-                    if (GridMap.GetCellItem(cellPosition) == 0)
+                    if (Input.IsActionPressed("click"))
                     {
-                        GridMap.SetCellItem(cellPosition, 1);
-                        var tilePosition = GridMap.MapToLocal(cellPosition);
-                        TurretManager.BuildTurret(tilePosition);
+                        Vector3 collisionPoint = _rayCast3D.GetCollisionPoint();
+                        Vector3I cellPosition = GridMap.LocalToMap(collisionPoint);
+
+                        if (GridMap.GetCellItem(cellPosition) == 0)
+                        {
+                            GridMap.SetCellItem(cellPosition, 1);
+                            var tilePosition = GridMap.MapToLocal(cellPosition);
+                            TurretManager.BuildTurret(tilePosition);
+                            _bank.SetGold(_bank.CurrentGold - TurretCost);
+                        }
                     }
+                }
+                else
+                {
+                    Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
                 }
             }
         }

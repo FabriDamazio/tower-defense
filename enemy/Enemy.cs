@@ -8,10 +8,14 @@ public partial class Enemy : PathFollow3D
     [Export]
     public int MaxHealth = 50;
 
+    [Export]
+    public int Reward = 15;
+
     public int CurrentHealth;
 
     private Base _base;
     private AnimationPlayer _animationPlayer;
+    private Bank _bank;
 
     public override void _Ready()
     {
@@ -19,6 +23,7 @@ public partial class Enemy : PathFollow3D
         CurrentHealth = MaxHealth;
 
         _animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
+        _bank = GetTree().GetFirstNodeInGroup("bank") as Bank;
     }
 
     public override void _Process(double delta)
@@ -41,6 +46,9 @@ public partial class Enemy : PathFollow3D
 
 
         if (CurrentHealth < 1)
+        {
+            _bank.SetGold(_bank.CurrentGold + Reward);
             QueueFree();
+        }
     }
 }

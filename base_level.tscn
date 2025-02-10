@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://hq8g2an6rmsr"]
+[gd_scene load_steps=15 format=3 uid="uid://hq8g2an6rmsr"]
 
 [ext_resource type="PackedScene" uid="uid://dnx2pujjh3eb5" path="res://ray_picker_camera/ray_picker_camera.tscn" id="1_3o4py"]
 [ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://44fsdf5arnu4" path="res://base/base.tscn" id="3_eesb3"]
 [ext_resource type="Script" uid="uid://dpqaxeaog1s44" path="res://TurretManager.cs" id="5_ftfrf"]
 [ext_resource type="PackedScene" uid="uid://dr2wkr4862du" path="res://turret/turret.tscn" id="6_u2wky"]
+[ext_resource type="Script" uid="uid://cj46wyxg62tgo" path="res://Bank.cs" id="8_bkkah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -30,6 +31,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_2elnx"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
 
@@ -117,3 +123,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
 script = ExtResource("5_ftfrf")
 Turret = ExtResource("6_u2wky")
 EnemyPath = NodePath("../EnemyPath")
+
+[node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("8_bkkah")
+
+[node name="GoldLabel" type="Label" parent="Bank"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_2elnx")
