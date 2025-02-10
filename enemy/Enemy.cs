@@ -34,6 +34,7 @@ public partial class Enemy : PathFollow3D
         {
             _base.TakeDamage();
             SetProcess(false);
+            QueueFree();
         }
     }
 

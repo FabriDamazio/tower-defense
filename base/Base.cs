@@ -19,11 +19,9 @@ public partial class Base : Node3D
     public void SetHealth(int value)
     {
         CurrentHealth = value;
-        GD.Print("health was changed");
         _healthLabel.Text = $"{CurrentHealth.ToString()}/{MaxHealth.ToString()}";
 
         var healthDiff = (float)CurrentHealth/(float)MaxHealth;
-        GD.Print(healthDiff);
         _healthLabel.Modulate = Colors.Red.Lerp(Colors.White, healthDiff) ;
 
         if (CurrentHealth < 1)

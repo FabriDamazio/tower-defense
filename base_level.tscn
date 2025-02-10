@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hq8g2an6rmsr"]
+[gd_scene load_steps=17 format=3 uid="uid://hq8g2an6rmsr"]
 
 [ext_resource type="PackedScene" uid="uid://dnx2pujjh3eb5" path="res://ray_picker_camera/ray_picker_camera.tscn" id="1_3o4py"]
 [ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
@@ -37,6 +37,11 @@ point_count = 5
 font_size = 64
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_xjg0i"]
+_limits = [10.0, 150.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+point_count = 2
 
 [node name="BaseLevel" type="Node3D"]
 
@@ -148,3 +153,4 @@ text = "Placeholder"
 label_settings = SubResource("LabelSettings_2elnx")
 
 [node name="DifficultManager" parent="." instance=ExtResource("9_xjg0i")]
+EnemyHealthCurve = SubResource("Curve_xjg0i")
