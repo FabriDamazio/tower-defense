@@ -70,11 +70,12 @@ data = {
 "cells": PackedInt32Array(65531, 65535, 0, 4, 65535, 0, 65535, 65534, 0, 65535, 2, 0, 65531, 65534, 0, 65532, 65534, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65534, 0, 3, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65534, 0, 65531, 0, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 65532, 65535, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("_difficultManager")]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("_difficultManager", "VictoryLayer")]
 curve = SubResource("Curve3D_bo3yr")
 script = ExtResource("3_2elnx")
 EnemyScene = ExtResource("2_5vx1e")
 _difficultManager = NodePath("../DifficultManager")
+VictoryLayer = NodePath("../VictoryLayer")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
@@ -85,7 +86,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -99,7 +100,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -113,7 +114,7 @@ path_interval = 0.5
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -125,6 +126,7 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_eesb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
+MaxHealth = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("EnemyPath")]
 script = ExtResource("5_ftfrf")
@@ -154,3 +156,14 @@ label_settings = SubResource("LabelSettings_2elnx")
 
 [node name="DifficultManager" parent="." instance=ExtResource("9_xjg0i")]
 EnemyHealthCurve = SubResource("Curve_xjg0i")
+
+[node name="VictoryLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
