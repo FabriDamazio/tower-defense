@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hq8g2an6rmsr"]
+[gd_scene load_steps=19 format=3 uid="uid://hq8g2an6rmsr"]
 
 [ext_resource type="PackedScene" uid="uid://dnx2pujjh3eb5" path="res://ray_picker_camera/ray_picker_camera.tscn" id="1_3o4py"]
 [ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpqaxeaog1s44" path="res://TurretManager.cs" id="5_ftfrf"]
 [ext_resource type="PackedScene" uid="uid://dr2wkr4862du" path="res://turret/turret.tscn" id="6_u2wky"]
 [ext_resource type="Script" uid="uid://cj46wyxg62tgo" path="res://Bank.cs" id="8_bkkah"]
+[ext_resource type="Theme" uid="uid://bneds7s3xrq32" path="res://theme.tres" id="8_fxpm7"]
 [ext_resource type="PackedScene" uid="uid://bdplchiws7iu2" path="res://difficult_manager/difficult_manager.tscn" id="9_xjg0i"]
 [ext_resource type="PackedScene" uid="uid://b77g5u6hn5sn3" path="res://difficult_manager/user_interface/victory_layer.tscn" id="10_ykwpl"]
 
@@ -41,7 +42,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_xjg0i"]
 _limits = [10.0, 150.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+_data = [Vector2(0, 39.344), 0.0, 110.656, 0, 1, Vector2(1, 150), 110.656, 0.0, 1, 0]
 point_count = 2
 
 [node name="BaseLevel" type="Node3D"]
@@ -140,12 +141,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("8_fxpm7")
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("8_bkkah")
-StartingGold = 450
 
 [node name="GoldLabel" type="Label" parent="Bank"]
 unique_name_in_owner = true

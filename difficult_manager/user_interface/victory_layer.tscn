@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b77g5u6hn5sn3"]
+[gd_scene load_steps=5 format=3 uid="uid://b77g5u6hn5sn3"]
 
 [ext_resource type="Script" uid="uid://cmslmxq1c2dfj" path="res://difficult_manager/user_interface/VictoryLayer.cs" id="1_dq1ks"]
+[ext_resource type="Theme" uid="uid://bneds7s3xrq32" path="res://theme.tres" id="2_7ghac"]
 [ext_resource type="Texture2D" uid="uid://wq4421uwwul1" path="res://assets/star.png" id="2_sxc7y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6vnd8"]
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_7ghac")
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 custom_minimum_size = Vector2(400, 400)
