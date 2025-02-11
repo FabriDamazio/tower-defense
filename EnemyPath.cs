@@ -9,7 +9,7 @@ public partial class EnemyPath : Path3D
     public DifficultManager _difficultManager;
 
     [Export]
-    public CanvasLayer VictoryLayer;
+    public VictoryLayer VictoryLayer;
 
     private Timer _timer;
 
@@ -49,8 +49,7 @@ public partial class EnemyPath : Path3D
                 if (child is PathFollow3D)
                     return;
             }
-            GD.Print("You won!");
-            VictoryLayer.Visible = true;
+            VictoryLayer.Victory();
         }
     }
 }

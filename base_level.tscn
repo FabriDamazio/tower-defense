@@ -145,6 +145,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("8_bkkah")
+StartingGold = 450
 
 [node name="GoldLabel" type="Label" parent="Bank"]
 unique_name_in_owner = true
