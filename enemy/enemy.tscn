@@ -54,8 +54,9 @@ _data = {
 [node name="Enemy" type="PathFollow3D"]
 loop = false
 script = ExtResource("1_2mvqj")
-Speed = 5.0
+Speed = 4.0
 MaxHealth = 100
+Reward = 20
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

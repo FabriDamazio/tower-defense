@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://hq8g2an6rmsr"]
+[gd_scene load_steps=18 format=3 uid="uid://hq8g2an6rmsr"]
 
 [ext_resource type="PackedScene" uid="uid://dnx2pujjh3eb5" path="res://ray_picker_camera/ray_picker_camera.tscn" id="1_3o4py"]
 [ext_resource type="MeshLibrary" uid="uid://dvs0gdvrs5pki" path="res://mesh_libraries/space_library.tres" id="1_bo3yr"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dr2wkr4862du" path="res://turret/turret.tscn" id="6_u2wky"]
 [ext_resource type="Script" uid="uid://cj46wyxg62tgo" path="res://Bank.cs" id="8_bkkah"]
 [ext_resource type="PackedScene" uid="uid://bdplchiws7iu2" path="res://difficult_manager/difficult_manager.tscn" id="9_xjg0i"]
+[ext_resource type="PackedScene" uid="uid://b77g5u6hn5sn3" path="res://difficult_manager/user_interface/victory_layer.tscn" id="10_ykwpl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -126,7 +127,6 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_eesb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
-MaxHealth = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("EnemyPath")]
 script = ExtResource("5_ftfrf")
@@ -157,13 +157,5 @@ label_settings = SubResource("LabelSettings_2elnx")
 [node name="DifficultManager" parent="." instance=ExtResource("9_xjg0i")]
 EnemyHealthCurve = SubResource("Curve_xjg0i")
 
-[node name="VictoryLayer" type="CanvasLayer" parent="."]
+[node name="VictoryLayer" parent="." instance=ExtResource("10_ykwpl")]
 visible = false
-
-[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
